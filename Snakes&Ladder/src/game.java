@@ -17,6 +17,8 @@ public class game {
 		System.out.println("Enter the number of faces on a dice");
 		int numberOfFaces=sc.nextInt();
 		Dice dice=new Dice(numberOfFaces);
+		System.out.println("Enter the board size");
+		int size=sc.nextInt();
 		System.out.println("Enter the number of players");
 		int numberOfPlayers=sc.nextInt();
 		while(numberOfPlayers>0)
@@ -38,7 +40,7 @@ public class game {
 			int startPosition=sc.nextInt();
 			System.out.println("Enter The end Position Of Snake");
 			int endPosition=sc.nextInt();
-			if(startPosition>endPosition)
+			if((startPosition>endPosition)&&(startPosition>0)&&(endPosition<size))
 			{
 				SnakesAndLadders snakes=new SnakesAndLadders(startPosition,endPosition);
 				snake.add(snakes);
@@ -53,15 +55,13 @@ public class game {
 			int startPosition=sc.nextInt();
 			System.out.println("Enter the end Position Of Ladder");
 			int endPosition=sc.nextInt();
-			if(startPosition<endPosition)
+			if((startPosition<endPosition)&&(startPosition<size)&&(endPosition>0))
 			{
 				SnakesAndLadders ladder=new SnakesAndLadders(startPosition,endPosition);
 				ladders.add(ladder);
 			}
 			numberOfLadders--;
 		}
-		System.out.println("Enter the board size");
-		int size=sc.nextInt();
 		Board board=new Board(dice,queue,snake,ladders,currentPosition,size);
 		board.startGame();
 	}
